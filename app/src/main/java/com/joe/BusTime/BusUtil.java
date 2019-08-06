@@ -53,9 +53,15 @@ public class BusUtil {
         try {
             Document document = (Jsoup.connect(url).get());
             String s = document.toString().split("\n")[11];
-            String[] result = StringEscapeUtils.unescapeHtml(decode(s)).split("<|>|\\?");
+            String[] result = StringEscapeUtils.unescapeHtml(decode(s)).split("<|>");
+            //此处的问号并非问号,而是特殊字符，不能用问号进行分割
             if (result[2].contains("最近一辆车")) {
-                text = ("最近一辆车距离此还有" + result[2].substring(11, 12) + "站，");
+                String s2=result[2];
+                String stationNum=s2.substring(11, 12);
+                if((int)s2.substring(12, 13).charAt(0)<100) {
+                    stationNum+=s2.substring(12, 13);
+                }
+                text = ("最近一辆车距离此还有"+stationNum+"站，");
                 text = text + result[4];
                 text += result[6].substring(1, result[6].length() - 1);
                 text += (result[8] + result[10].substring(1));
