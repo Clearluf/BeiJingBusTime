@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,14 +33,17 @@ public class MainActivity extends AppCompatActivity {
 
         //directionSpinner=(Spinner)findViewById(R.id.spinner);
         stationSpinner = (Spinner) findViewById(R.id.spinner2);
+        String[] lines =getResources().getStringArray(R.array.line_array);
+        AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView);//找到相应的控件
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, lines);//配置Adaptor
+        autoCompleteTextView.setAdapter(adapter);
 
     }
 
     //检查线路名输入
     public void checkLine(View v) throws InterruptedException {
-        EditText et;
-        et = findViewById(R.id.editText);
-        linename = et.getText().toString();
+        AutoCompleteTextView act=findViewById(R.id.autoCompleteTextView);
+        linename = act.getText().toString();
         //System.out.println(linename);
         // Android 4.0 之后不能在主线程中请求HTTP请求
 
@@ -103,4 +106,5 @@ public class MainActivity extends AppCompatActivity {
         txv.setText(result);
 
     }
+
 }

@@ -14,17 +14,6 @@
         android:textAlignment="center"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_row="0"
-        android:layout_column="1"
-        android:ems="10"
-        android:hint="线路名：101，快360等等"
-        android:inputType="textPersonName"
-        android:textSize="14sp" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -94,5 +83,12 @@
         android:layout_column="1"
         android:textAlignment="center"
         android:textSize="18sp" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="1" />
 
 </GridLayout>
